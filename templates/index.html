@@ -1,1 +1,238 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook Tools 🍰</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>🍰 Facebook Tools</h1>
+            <p>Công cụ hỗ trợ Facebook tích hợp</p>
+        </header>
 
+        <!-- Navigation Tabs -->
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="nuoi_acc">
+                <i class="fas fa-cookie-bite"></i> Nuôi Acc
+            </button>
+            <button class="tab-btn" data-tab="buff_share">
+                <i class="fas fa-share-alt"></i> Buff Share
+            </button>
+            <button class="tab-btn" data-tab="buff_cmt">
+                <i class="fas fa-comment"></i> Buff Comment
+            </button>
+        </div>
+
+        <!-- Content Areas -->
+        <div class="content">
+            <!-- Nuôi Acc Tab -->
+            <div id="nuoi_acc" class="tab-content active">
+                <div class="card">
+                    <h2><i class="fas fa-cookie-bite"></i> Nuôi Tài Khoản</h2>
+                    
+                    <div class="input-group">
+                        <label for="nuoi_cookies"><i class="fas fa-key"></i> Nhập Cookies (mỗi cookie một dòng):</label>
+                        <textarea id="nuoi_cookies" rows="6" placeholder="Nhập cookies Facebook..."></textarea>
+                    </div>
+
+                    <div class="button-group">
+                        <button id="nuoi_check" class="btn btn-primary">
+                            <i class="fas fa-check"></i> Kiểm Tra Cookies
+                        </button>
+                        <button id="nuoi_start" class="btn btn-success" style="display: none;">
+                            <i class="fas fa-play"></i> Bắt Đầu
+                        </button>
+                        <button id="nuoi_stop" class="btn btn-warning" style="display: none;">
+                            <i class="fas fa-pause"></i> Dừng
+                        </button>
+                        <button id="nuoi_continue" class="btn btn-info" style="display: none;">
+                            <i class="fas fa-play-circle"></i> Tiếp Tục
+                        </button>
+                        <button id="nuoi_end" class="btn btn-danger" style="display: none;">
+                            <i class="fas fa-stop"></i> Kết Thúc
+                        </button>
+                    </div>
+
+                    <!-- Thông tin cookies -->
+                    <div class="cookie-info">
+                        <h3><i class="fas fa-info-circle"></i> Thông Tin Cookies:</h3>
+                        <div id="nuoi_cookie_details">
+                            <p class="placeholder">Chưa có thông tin cookie...</p>
+                        </div>
+                    </div>
+
+                    <!-- Logs -->
+                    <div class="log-section">
+                        <h3><i class="fas fa-clipboard-list"></i> Log Hoạt Động:</h3>
+                        <div class="log-box" id="nuoi_logs">
+                            <div class="log-entry">
+                                <span class="log-time">10:30:15</span>
+                                <span class="log-message">Chờ nhập cookies...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Buff Share Tab -->
+            <div id="buff_share" class="tab-content">
+                <div class="card">
+                    <h2><i class="fas fa-share-alt"></i> Buff Share</h2>
+                    
+                    <div class="input-group">
+                        <label for="share_cookies"><i class="fas fa-key"></i> Nhập Cookies:</label>
+                        <textarea id="share_cookies" rows="6" placeholder="Nhập cookies Facebook..."></textarea>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="share_post_id"><i class="fas fa-hashtag"></i> ID Bài Viết:</label>
+                        <input type="text" id="share_post_id" placeholder="Nhập ID bài viết cần share...">
+                    </div>
+
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label for="share_delay"><i class="fas fa-clock"></i> Delay (giây):</label>
+                            <input type="number" id="share_delay" value="30" min="1">
+                        </div>
+                        <div class="input-group">
+                            <label for="share_total"><i class="fas fa-bullseye"></i> Tổng Share:</label>
+                            <input type="number" id="share_total" value="10" min="1">
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button id="share_check" class="btn btn-primary">
+                            <i class="fas fa-check"></i> Kiểm Tra Cookies
+                        </button>
+                        <button id="share_start" class="btn btn-success" style="display: none;">
+                            <i class="fas fa-play"></i> Bắt Đầu
+                        </button>
+                        <button id="share_stop" class="btn btn-warning" style="display: none;">
+                            <i class="fas fa-pause"></i> Dừng
+                        </button>
+                        <button id="share_continue" class="btn btn-info" style="display: none;">
+                            <i class="fas fa-play-circle"></i> Tiếp Tục
+                        </button>
+                        <button id="share_end" class="btn btn-danger" style="display: none;">
+                            <i class="fas fa-stop"></i> Kết Thúc
+                        </button>
+                    </div>
+
+                    <!-- Thông tin cookies -->
+                    <div class="cookie-info">
+                        <h3><i class="fas fa-info-circle"></i> Thông Tin Cookies:</h3>
+                        <div id="share_cookie_details">
+                            <p class="placeholder">Chưa có thông tin cookie...</p>
+                        </div>
+                    </div>
+
+                    <!-- Logs -->
+                    <div class="log-section">
+                        <h3><i class="fas fa-clipboard-list"></i> Log Hoạt Động:</h3>
+                        <div class="log-box" id="share_logs">
+                            <div class="log-entry">
+                                <span class="log-time">10:30:15</span>
+                                <span class="log-message">Chờ nhập cookies...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Buff Comment Tab -->
+            <div id="buff_cmt" class="tab-content">
+                <div class="card">
+                    <h2><i class="fas fa-comment"></i> Buff Comment</h2>
+                    
+                    <div class="input-group">
+                        <label for="cmt_cookies"><i class="fas fa-key"></i> Nhập Cookies:</label>
+                        <textarea id="cmt_cookies" rows="6" placeholder="Nhập cookies Facebook..."></textarea>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="cmt_post_id"><i class="fas fa-hashtag"></i> ID Bài Viết:</label>
+                        <input type="text" id="cmt_post_id" placeholder="Nhập ID bài viết cần comment...">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="cmt_message"><i class="fas fa-comment-dots"></i> Nội Dung Comment:</label>
+                        <textarea id="cmt_message" rows="3" placeholder="Nhập nội dung comment..."></textarea>
+                    </div>
+
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label for="cmt_delay"><i class="fas fa-clock"></i> Delay (giây):</label>
+                            <input type="number" id="cmt_delay" value="30" min="1">
+                        </div>
+                        <div class="input-group">
+                            <label for="cmt_total"><i class="fas fa-bullseye"></i> Tổng Comment:</label>
+                            <input type="number" id="cmt_total" value="10" min="1">
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button id="cmt_check" class="btn btn-primary">
+                            <i class="fas fa-check"></i> Kiểm Tra Cookies
+                        </button>
+                        <button id="cmt_start" class="btn btn-success" style="display: none;">
+                            <i class="fas fa-play"></i> Bắt Đầu
+                        </button>
+                        <button id="cmt_stop" class="btn btn-warning" style="display: none;">
+                            <i class="fas fa-pause"></i> Dừng
+                        </button>
+                        <button id="cmt_continue" class="btn btn-info" style="display: none;">
+                            <i class="fas fa-play-circle"></i> Tiếp Tục
+                        </button>
+                        <button id="cmt_end" class="btn btn-danger" style="display: none;">
+                            <i class="fas fa-stop"></i> Kết Thúc
+                        </button>
+                    </div>
+
+                    <!-- Thông tin cookies -->
+                    <div class="cookie-info">
+                        <h3><i class="fas fa-info-circle"></i> Thông Tin Cookies:</h3>
+                        <div id="cmt_cookie_details">
+                            <p class="placeholder">Chưa có thông tin cookie...</p>
+                        </div>
+                    </div>
+
+                    <!-- Logs -->
+                    <div class="log-section">
+                        <h3><i class="fas fa-clipboard-list"></i> Log Hoạt Động:</h3>
+                        <div class="log-box" id="cmt_logs">
+                            <div class="log-entry">
+                                <span class="log-time">10:30:15</span>
+                                <span class="log-message">Chờ nhập cookies...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div class="status-item">
+                <span class="status-label">Nuôi Acc:</span>
+                <span id="status_nuoi" class="status-idle">●</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">Buff Share:</span>
+                <span id="status_share" class="status-idle">●</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">Buff Cmt:</span>
+                <span id="status_cmt" class="status-idle">●</span>
+            </div>
+            <div class="status-time" id="current_time">--:--:--</div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
